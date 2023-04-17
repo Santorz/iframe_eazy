@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+    <form id="contact_form">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required>
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+
+        <div>
+            <label for="message">Message:</label>
+            <textarea name="message" id="message" cols="30" rows="10" required></textarea>
+        </div>
+
+        <input type="submit" value="Submit" id="submit_button">
+    </form>
+
+    <!-- JS is here -->
+    <script>
+        let form = document.getElementById('contact_form')
+        let iframe_modal = parent.document.getElementById('iframe_modal');
+
+        // Functions
+        const closeFunction = () => {
+            iframe_modal.style.removeProperty('display');
+        };
+
+        form.onsubmit = (e) => {
+            e.preventDefault();
+
+            // Show reloading notice
+            const shouldReload = confirm('Should I reload this page?')
+
+            // Reload
+            if (shouldReload) {
+                closeFunction()
+                location.reload()
+            }
+            else {
+                form.clear()
+                closeFunction()
+            }
+        }
+    </script>
+</body>
+
+</html>
